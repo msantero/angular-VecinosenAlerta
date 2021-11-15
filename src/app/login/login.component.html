@@ -1,0 +1,48 @@
+<body>
+  <div id="contenedor">
+    <div id="central">
+      <div id="login">
+        <div class="titulo">Login Administrador</div>
+        <form [formGroup]="loginGroup" (ngSubmit)="login()">
+          <input
+            type="text"
+            name="usuario"
+            id="usuario"
+            placeholder="Usuario"
+            required
+            formControlName="usuario"
+          />
+          <!--  formControlName="usuario" -->
+
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            name="password"
+            required
+            formControlName="password"
+          />
+
+          <button type="submit" title="Ingresar" name="Ingresar">Login</button>
+          <!--  [routerLink]="['dashboard']"-->
+        </form>
+
+        <div class="pie-form">
+          <a [routerLink]="['registro']"> ¿No tenés Cuenta? Registrate </a>
+        </div>
+
+        <!--
+      <p *ngIf="usuario.token">
+        <app-usuario-alerts [usuario]="usuario" (notify)="onNotify()">
+        </app-usuario-alerts>
+      </p>
+      -->
+        <div class="inferior" *ngIf="msg">
+          <label> {{ msg }}</label>
+        </div>
+
+        <!--  <h4 *ngIf="errMsg">{{errMsg}}</h4>-->
+      </div>
+    </div>
+  </div>
+</body>

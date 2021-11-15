@@ -1,0 +1,79 @@
+<body>
+  <br />
+  <br />
+
+  <table>
+    <tr>
+      <td colspan="2">
+        <p id="titulo">Administrador: {{ nombre_administrador }}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <form>
+          <label>Categorias: </label>
+          <select
+            name="categorias"
+            [(ngModel)]="categoria.id"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <option
+              [ngValue]="item.id"
+              *ngFor="let item of categorias"
+              [disabled]="item.id == '0'"
+            >
+              {{ item.nombre }}
+            </option>
+          </select>
+
+          <button
+            type="submit"
+            title="Eliminar"
+            name="Eliminar"
+            onclick="eliminar()"
+          >
+            Eliminar
+          </button>
+        </form>
+      </td>
+      <td>
+        <br />
+
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <form [formGroup]="categoriaGroup" (ngSubmit)="altacategoria()">
+          <label>Nombre:</label>
+          <input
+            type="text"
+            name="nombre"
+            id="nombre"
+            required
+            formControlName="nombre"
+          />
+          <!-- dos input de cantidad de adultos y niños -->
+
+          <label>Minutos de expiración: </label>
+          <input
+            class="inputnumber"
+            type="number"
+            id="minutosExpiracion"
+            name="minutosExpiracion"
+            min="1"
+            max="10000"
+            formControlName="minutosExpiracion"
+          />
+
+          <button type="submit" title="Agregar" name="Agregar">Agregar</button>
+
+          <div id="titulo4" *ngIf="msg">
+            <label> {{ msg }}</label>
+          </div>
+        </form>
+      </td>
+    </tr>
+  </table>
+</body>
