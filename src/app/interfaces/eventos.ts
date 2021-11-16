@@ -1,3 +1,6 @@
+import { Categoria } from './categorias';
+import { Usuario } from './usuarios';
+
 export class Evento {
   _id: string;
   titulo: string;
@@ -5,8 +8,8 @@ export class Evento {
   estaActivo: boolean;
   habilitaTelefono: boolean;
   geolocalizacion: string;
-  idCagteggoria: string;
-  idUsuario: string;
-  minutosExpiracion: Int16Array;
+  fechaPublicacion: Date;
+  categoria: Categoria;
+  usuario: Usuario;
   comentarios: string[];
 }

@@ -10,28 +10,23 @@
     </tr>
     <tr>
       <td>
-        <form>
+        <form [formGroup]="EliminarCategoriaGroup" (ngSubmit)="eliminar()">
           <label>Categorias: </label>
           <select
             name="categorias"
-            [(ngModel)]="categoria.id"
+            [(ngModel)]="categoria._id"
             [ngModelOptions]="{ standalone: true }"
           >
             <option
-              [ngValue]="item.id"
+              [ngValue]="item._id"
               *ngFor="let item of categorias"
-              [disabled]="item.id == '0'"
+              [disabled]="item._id == '0'"
             >
               {{ item.nombre }}
             </option>
           </select>
 
-          <button
-            type="submit"
-            title="Eliminar"
-            name="Eliminar"
-            onclick="eliminar()"
-          >
+          <button type="submit" title="Eliminar" name="Eliminar">
             Eliminar
           </button>
         </form>
@@ -41,11 +36,9 @@
 
         <br />
       </td>
-    </tr>
 
-    <tr>
       <td>
-        <form [formGroup]="categoriaGroup" (ngSubmit)="altacategoria()">
+        <form [formGroup]="AltaCategoriaGroup" (ngSubmit)="altacategoria()">
           <label>Nombre:</label>
           <input
             type="text"
@@ -75,5 +68,31 @@
         </form>
       </td>
     </tr>
+
+    <!--Grid column-->¨
+    <td>
+      <tr>
+        <td id="titulo2" colspan="5">Lista de eventos</td>
+      </tr>
+      <tr>
+        <th scope="col" id="titulo1">Usuario creador</th>
+        <th scope="col" id="titulo1">Titulo</th>
+        <th scope="col" id="titulo1">Activo</th>
+        <th scope="col" id="titulo1">Categoria</th>
+        <th scope="col" id="titulo1">Fecha de publicación</th>
+      </tr>
+      <tbody>
+        <ng-container *ngFor="let evento of eventos">
+          <tr>
+            <td>{{ evento.usuario.user }}</td>
+            <td>{{ evento.titulo }}</td>
+            <td>{{ evento.estaActivo }}</td>
+            <td>{{ evento.categoria.nombre }}</td>
+            <td>{{ evento.fechaPublicacion }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <br />
+    </td>
   </table>
 </body>

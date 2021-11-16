@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Categoria } from '../interfaces/categorias';
-//import { Evento, Eventos, EventoResponse } from '../interfaces/eventos';
+import { Evento } from '../interfaces/eventos';
 
 import { EventoService } from '../services/evento.service';
 import { CategoriaService } from '../services/categoria.service';
@@ -17,26 +17,35 @@ import { AdminService } from '../services/administrador.service';
 export class DashboardComponent implements OnInit {
   nombre_administrador: string;
   msg: string;
+  evento: Evento | undefined;
+  eventos: Evento[] = [];
 
   categoriaalta: Categoria | undefined;
-  categoria: Categoria = { id: '0' } as Categoria;
-  categorias: Categoria[] = [{ id: '0', nombre: 'Choose one' } as Categoria];
+  categoria: Categoria = { _id: '0' } as Categoria;
+  categorias: Categoria[] = [{ _id: '0', nombre: 'Choose one' } as Categoria];
 
   ngOnInit() {
     this.nombre_administrador = this.AdminService.getUserNombre();
     this.obtener_categorias(true);
+    this.obtener_eventos();
   }
 
-  categoriaGroup: FormGroup;
+  AltaCategoriaGroup: FormGroup;
+  EliminarCategoriaGroup: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private AdminService: AdminService,
     private CategoriaService: CategoriaService,
+    private EventoService: EventoService,
     private router: Router
   ) {
-    this.categoriaGroup = this.formBuilder.group({
+    this.AltaCategoriaGroup = this.formBuilder.group({
       nombre: '',
       minutosExpiracion: 0,
+    });
+
+    this.EliminarCategoriaGroup = this.formBuilder.group({
+      _id: '',
     });
   }
 
@@ -46,7 +55,9 @@ export class DashboardComponent implements OnInit {
       (cats) => {
         console.log('Categorias: ' + cats.toString());
         this.CategoriaService.setCategorias(<Categoria[]>cats);
-        console.log('se obtuvo: ' + this.CategoriaService.categorias);
+        console.log(
+          'se obtuvo categorias: ' + this.CategoriaService.categorias
+        );
 
         if (primeravez) {
           this.categorias = this.categorias.concat(
@@ -66,8 +77,8 @@ export class DashboardComponent implements OnInit {
 
   altacategoria() {
     const AltaCat = {
-      ...this.categoriaGroup.value,
-      categoriaId: this.categoria.id,
+      ...this.AltaCategoriaGroup.value,
+      categoriaId: this.categoria._id,
     };
 
     if (AltaCat?.nombre == '') {
@@ -81,7 +92,7 @@ export class DashboardComponent implements OnInit {
       //let venta =  Venta;
 
       this.categoriaalta = {
-        id: '0',
+        _id: '0',
         nombre: AltaCat.nombre,
         minutosExpiracion: AltaCat.minutosExpiracion,
       };
@@ -113,7 +124,7 @@ export class DashboardComponent implements OnInit {
 
       AltaCat.minutosExpiracion = 0;
       AltaCat.nombre = '';
-      this.categoriaGroup.reset();
+      this.AltaCategoriaGroup.reset();
     }
 
     console.log(
@@ -128,6 +139,49 @@ export class DashboardComponent implements OnInit {
   }
 
   eliminar() {
-    this.CategoriaService.borrarcategoria(this.categoria.id);
+    const BajaCat = {
+      ...this.EliminarCategoriaGroup.value,
+      _Id: this.categoria._id,
+    };
+    console.log('Se va a borrar la cat con id: ' + BajaCat._Id);
+    this.CategoriaService.borrarcategoria(BajaCat._Id);
+    this.EliminarCategoriaGroup.reset();
+    this.obtener_categorias(false);
+  }
+
+  obtener_eventos() {
+    console.log('Obtengo eventos...');
+    this.EventoService.geteventos().subscribe(
+      (eve) => {
+        console.log('Eventos: ' + eve.toString());
+        this.EventoService.setEventos(<Evento[]>eve);
+        console.log('se obtuvo eventos: ' + this.EventoService.eventos);
+
+        this.eventos = this.EventoService.eventos;
+        this.ver_eventos(this.eventos);
+      },
+
+      ({ error: { mensaje } }) => {
+        this.msg = mensaje;
+        console.log('Mensaje de error al obtener eventos: ' + this.msg);
+      }
+    );
+  }
+
+  ver_eventos(eventos: Evento[]) {
+    console.log('Obtengo  eventos...');
+
+    eventos.forEach((evento) => {
+      console.log(
+        'eventos: id: ' +
+          evento._id +
+          ' titulo: ' +
+          evento.titulo +
+          ' idcategoria ' +
+          evento.categoria._id +
+          ' idusuario ' +
+          evento.usuario._id
+      );
+    });
   }
 }

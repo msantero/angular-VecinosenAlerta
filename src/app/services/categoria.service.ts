@@ -73,6 +73,6 @@ export class CategoriaService {
   }
 
   getId() {
-    return this.categoria?.id;
+    return this.categoria?._id;
   }
 }

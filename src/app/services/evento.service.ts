@@ -1,8 +1,45 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-@Injectable()
+import { AdminService } from '../services/administrador.service';
+import { Observable } from 'rxjs';
+
+import { Evento } from '../interfaces/eventos';
+
+@Injectable({
+  providedIn: 'root',
+})
 export class EventoService {
+  evento: Evento | undefined;
+  eventos: Evento[];
+  private router: Router;
+  constructor(private http: HttpClient, private AdminService: AdminService) {}
 
-  constructor() { }
+  geteventos(): Observable<Evento[]> {
+    const headers = {
+      'Content-type': 'application/json',
+    };
 
+    //const body = JSON.stringify({ usuario, password });
+    return this.http.get<Evento[]>(
+      'https://vecinosenalerta.herokuapp.com/eventos',
+      {
+        headers,
+        responseType: 'json',
+      }
+    );
+  }
+
+  setEventos(eve: any) {
+    this.eventos = <Evento[]>eve;
+  }
+
+  getEvento() {
+    return this.evento;
+  }
+
+  getId() {
+    return this.evento?._id;
+  }
 }
