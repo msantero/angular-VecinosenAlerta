@@ -13,3 +13,16 @@ export class Evento {
   usuario: Usuario;
   comentarios: string[];
 }
+
+export interface EventosxCategoria {
+  idcategoria: string;
+  idevento: string;
+  nombre: string;
+  titulo: string;
+}
+
+export interface CantCategoriaEventos {
+  idCategoria: string;
+  nombre: string;
+  cantidad: number;
+}

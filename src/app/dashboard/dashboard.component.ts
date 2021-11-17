@@ -3,7 +3,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Categoria } from '../interfaces/categorias';
-import { Evento } from '../interfaces/eventos';
+import {
+  Evento,
+  EventosxCategoria,
+  CantCategoriaEventos,
+} from '../interfaces/eventos';
 
 import { EventoService } from '../services/evento.service';
 import { CategoriaService } from '../services/categoria.service';
@@ -23,6 +27,9 @@ export class DashboardComponent implements OnInit {
   categoriaalta: Categoria | undefined;
   categoria: Categoria = { _id: '0' } as Categoria;
   categorias: Categoria[] = [{ _id: '0', nombre: 'Choose one' } as Categoria];
+
+  EventosxCategoria: EventosxCategoria[] = [];
+  CantCategoriaEventos: CantCategoriaEventos[] = [];
 
   ngOnInit() {
     this.nombre_administrador = this.AdminService.getUserNombre();
