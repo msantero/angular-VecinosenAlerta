@@ -192,6 +192,32 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  obtener_cant_eventos_categoria(eventos: Eventos[], categorias: Categoria[]) {
+    console.log('Obtengo cantidad de eventos por categoria...');
+
+    categorias.forEach((cat) => {
+      let frs = eventos.filter(
+        (element) => element.id_paquete === paq.id && cat._id != '0'
+      );
+      var cantidad = 0;
+
+      frs.forEach((element) => {
+        cantidad++;
+        let cantcateve = {
+          idcategoria: cat._id,
+          nombre: cat.nombre,
+          cantidad: cantidad,
+        };
+
+        cat._id != '0' ? this.CantCategoriaEventos.push(cantcateve) : '';
+      });
+
+      //porque el primero es choose one
+    });
+    //return pdventas;
+    //console.log('ventas  por paquete: ' + JSON.stringify(pdventas));
+  }
+
   ver_eventos(eventos: Evento[]) {
     console.log('Obtengo  eventos...');
 

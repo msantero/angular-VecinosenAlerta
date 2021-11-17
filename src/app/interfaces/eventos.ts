@@ -22,7 +22,7 @@ export interface EventosxCategoria {
 }
 
 export interface CantCategoriaEventos {
-  idCategoria: string;
+  idcategoria: string;
   nombre: string;
   cantidad: number;
 }
