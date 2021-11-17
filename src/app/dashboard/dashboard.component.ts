@@ -182,6 +182,7 @@ export class DashboardComponent implements OnInit {
         console.log('se obtuvo eventos: ' + this.EventoService.eventos);
 
         this.eventos = this.EventoService.eventos;
+        this.obtener_cant_eventos_categoria(this.eventos, this.categorias);
         this.ver_eventos(this.eventos);
       },
 
