@@ -10,28 +10,6 @@
     </tr>
     <tr>
       <td>
-        <form [formGroup]="EliminarCategoriaGroup" (ngSubmit)="eliminar()">
-          <label>Categorias: </label>
-          <select
-            name="categorias"
-            [(ngModel)]="categoria._id"
-            [ngModelOptions]="{ standalone: true }"
-          >
-            <option
-              [ngValue]="item._id"
-              *ngFor="let item of categorias"
-              [disabled]="item._id == '0'"
-            >
-              {{ item.nombre }}
-            </option>
-          </select>
-
-          <button type="submit" title="Eliminar" name="Eliminar">
-            Eliminar
-          </button>
-        </form>
-      </td>
-      <td>
         <form [formGroup]="AltaCategoriaGroup" (ngSubmit)="altacategoria()">
           <label>Nombre:</label>
           <input
@@ -59,6 +37,29 @@
           <div id="titulo4" *ngIf="msg">
             <label> {{ msg }}</label>
           </div>
+        </form>
+      </td>
+
+      <td>
+        <form [formGroup]="EliminarCategoriaGroup" (ngSubmit)="eliminar()">
+          <label>Categorias: </label>
+          <select
+            name="categorias"
+            [(ngModel)]="categoria._id"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <option
+              [ngValue]="item._id"
+              *ngFor="let item of categorias"
+              [disabled]="item._id == '0'"
+            >
+              {{ item.nombre }}
+            </option>
+          </select>
+
+          <button type="submit" title="Eliminar" name="Eliminar">
+            Eliminar
+          </button>
         </form>
       </td>
     </tr>
