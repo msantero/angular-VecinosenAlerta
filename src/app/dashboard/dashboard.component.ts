@@ -192,12 +192,12 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  obtener_cant_eventos_categoria(eventos: Eventos[], categorias: Categoria[]) {
+  obtener_cant_eventos_categoria(eventos: Evento[], categorias: Categoria[]) {
     console.log('Obtengo cantidad de eventos por categoria...');
 
     categorias.forEach((cat) => {
       let frs = eventos.filter(
-        (element) => element.id_paquete === paq.id && cat._id != '0'
+        (element) => element._id === cat._id && cat._id != '0'
       );
       var cantidad = 0;
 
@@ -211,11 +211,7 @@ export class DashboardComponent implements OnInit {
 
         cat._id != '0' ? this.CantCategoriaEventos.push(cantcateve) : '';
       });
-
-      //porque el primero es choose one
     });
-    //return pdventas;
-    //console.log('ventas  por paquete: ' + JSON.stringify(pdventas));
   }
 
   ver_eventos(eventos: Evento[]) {
