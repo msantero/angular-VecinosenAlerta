@@ -53,6 +53,18 @@ export class CategoriaService {
     return this.http
       .delete('https://vecinosenalerta.herokuapp.com/categoria/' + id, {
         headers,
+      });
+  }
+  
+  /*
+  borrarcategoria(id: String) {
+    const headers = {
+      'Content-type': 'application/json',
+    };
+
+    return this.http
+      .delete('https://vecinosenalerta.herokuapp.com/categoria/' + id, {
+        headers,
       })
       .subscribe({
         next: (data) => {
@@ -63,7 +75,7 @@ export class CategoriaService {
         },
       });
   }
-
+*/
   setCategorias(cat: any) {
     this.categorias = <Categoria[]>cat;
   }

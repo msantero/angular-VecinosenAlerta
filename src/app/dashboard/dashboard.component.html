@@ -77,15 +77,16 @@
           <th scope="col" id="titulo1">Fecha de publicación</th>
         </tr>
         <tbody>
-          <ng-container *ngFor="let evento of eventos">
-            <tr>
-              <td>{{ evento.usuario.user }}</td>
-              <td>{{ evento.titulo }}</td>
-              <td>{{ evento.estaActivo }}</td>
-              <td>{{ evento.categoria.nombre }}</td>
-              <td>{{ evento.fechaPublicacion | date: 'dd/MM/yyyy hh:mm' }}</td>
-            </tr>
-          </ng-container>
+          <tr *ngFor="let evento of eventos">
+            <td>{{ evento.usuario.user }}</td>
+            <td>{{ evento.titulo }}</td>
+            <td ng-if="evento.estaActivo">
+              {{ evento.estaActivo }}
+            </td>
+
+            <td>{{ evento.categoria.nombre }}</td>
+            <td>{{ evento.fechaPublicacion | date: 'dd/MM/yyyy hh:mm' }}</td>
+          </tr>
         </tbody>
         <br />
       </td>

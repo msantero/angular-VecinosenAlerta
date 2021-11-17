@@ -144,7 +144,24 @@ export class DashboardComponent implements OnInit {
       _Id: this.categoria._id,
     };
     console.log('Se va a borrar la cat con id: ' + BajaCat._Id);
-    this.CategoriaService.borrarcategoria(BajaCat._Id);
+    this.msg = 'Eliminando categoria con id: ' + BajaCat._Id;
+
+    this.CategoriaService.borrarcategoria(BajaCat._Id).subscribe(
+      () => {
+        console.log('se borro categoria: ');
+
+        this.EliminarCategoriaGroup.reset();
+        this.obtener_categorias(false);
+        this.msg = '';
+      },
+
+      ({ error: { mensaje } }) => {
+        this.msg = mensaje;
+        console.log('Mensaje de error al eliminar categoria: ' + this.msg);
+      }
+    );
+
+    //this.CategoriaService.borrarcategoria(BajaCat._Id);
     this.EliminarCategoriaGroup.reset();
     this.obtener_categorias(false);
   }
