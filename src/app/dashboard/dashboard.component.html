@@ -32,12 +32,6 @@
         </form>
       </td>
       <td>
-        <br />
-
-        <br />
-      </td>
-
-      <td>
         <form [formGroup]="AltaCategoriaGroup" (ngSubmit)="altacategoria()">
           <label>Nombre:</label>
           <input
@@ -70,29 +64,31 @@
     </tr>
 
     <!--Grid column-->¨
-    <td>
-      <tr>
-        <td id="titulo2" colspan="5">Lista de eventos</td>
-      </tr>
-      <tr>
-        <th scope="col" id="titulo1">Usuario creador</th>
-        <th scope="col" id="titulo1">Titulo</th>
-        <th scope="col" id="titulo1">Activo</th>
-        <th scope="col" id="titulo1">Categoria</th>
-        <th scope="col" id="titulo1">Fecha de publicación</th>
-      </tr>
-      <tbody>
-        <ng-container *ngFor="let evento of eventos">
-          <tr>
-            <td>{{ evento.usuario.user }}</td>
-            <td>{{ evento.titulo }}</td>
-            <td>{{ evento.estaActivo }}</td>
-            <td>{{ evento.categoria.nombre }}</td>
-            <td>{{ evento.fechaPublicacion }}</td>
-          </tr>
-        </ng-container>
-      </tbody>
-      <br />
-    </td>
+    <tr>
+      <td>
+        <tr>
+          <td id="titulo2" colspan="5">Lista de eventos</td>
+        </tr>
+        <tr>
+          <th scope="col" id="titulo1">Usuario creador</th>
+          <th scope="col" id="titulo1">Titulo</th>
+          <th scope="col" id="titulo1">Activo</th>
+          <th scope="col" id="titulo1">Categoria</th>
+          <th scope="col" id="titulo1">Fecha de publicación</th>
+        </tr>
+        <tbody>
+          <ng-container *ngFor="let evento of eventos">
+            <tr>
+              <td>{{ evento.usuario.user }}</td>
+              <td>{{ evento.titulo }}</td>
+              <td>{{ evento.estaActivo }}</td>
+              <td>{{ evento.categoria.nombre }}</td>
+              <td>{{ evento.fechaPublicacion | date: 'dd/MM/yyyy hh:mm' }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <br />
+      </td>
+    </tr>
   </table>
 </body>
