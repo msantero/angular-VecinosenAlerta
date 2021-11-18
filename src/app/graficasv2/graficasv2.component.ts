@@ -46,7 +46,6 @@ export class Graficasv2Component implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log('LLEGUE 3 ' + this.CantCategoriaEventos.length);
     this.generoGraficaCantidadEventosxCategorias(this.CantCategoriaEventos);
   }
 
@@ -57,11 +56,11 @@ export class Graficasv2Component implements OnInit {
   generoGraficaCantidadEventosxCategorias(
     cantidadeventos: CantCategoriaEventos[]
   ) {
-    console.log('LLEGUE 2 ' + cantidadeventos.length);
+    /*  console.log('LLEGUE 2 ' + cantidadeventos.length);
     cantidadeventos.forEach((element) => {
       console.log('NOMBRE' + element.nombre);
     });
-
+*/
     this.categorias = cantidadeventos.map((p) => p.nombre);
     this.cantidadeventos = cantidadeventos.map((p) => p.cantidad);
     /*

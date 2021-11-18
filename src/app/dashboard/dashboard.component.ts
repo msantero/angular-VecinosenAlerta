@@ -206,14 +206,15 @@ export class DashboardComponent implements OnInit {
 
       frs.forEach((element) => {
         cantidad++;
-        let cantcateve = {
-          idcategoria: cat._id,
-          nombre: cat.nombre,
-          cantidad: cantidad,
-        };
-
-        cat._id != '0' ? this.CantCategoriaEventos.push(cantcateve) : '';
       });
+
+      let cantcateve = {
+        idcategoria: cat._id,
+        nombre: cat.nombre,
+        cantidad: cantidad,
+      };
+
+      cat._id != '0' ? this.CantCategoriaEventos.push(cantcateve) : '';
     });
   }
 
