@@ -221,27 +221,14 @@ export class DashboardComponent implements OnInit {
   }
 
   obtener_categorias_por_mes() {
-    var cantidad = 0;
-    this.eventos.forEach((eve) => {
-      this.eventos.forEach((eveaux) => {
-        if (
-          eveaux.fechaPublicacion.getDate() == eve.fechaPublicacion.getDate() &&
-          eveaux.fechaPublicacion.getMonth() ==
-            eve.fechaPublicacion.getDate() &&
-          eveaux.fechaPublicacion.getFullYear() ==
-            eve.fechaPublicacion.getFullYear()
-        ) {
-          cantidad++;
-        }
-      });
-      let evexmes = {
-        mes: eve.fechaPublicacion.getMonth(),
-        anio: eve.fechaPublicacion.getFullYear(),
-        cantidad: cantidad,
-      };
-      this.CantEventosxMes.push(evexmes);
-      this.CantEventosxMes.sort();
-    });
+    /*
+    let evexmes = {
+      mes: eve.fechaPublicacion.getMonth(),
+      anio: eve.fechaPublicacion.getFullYear(),
+      cantidad: cantidad,
+    }; */
+    //this.CantEventosxMes.push(evexmes);
+    // this.CantEventosxMes.sort();
   }
 
   ver_eventos(eventos: Evento[]) {

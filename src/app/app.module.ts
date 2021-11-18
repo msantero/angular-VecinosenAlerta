@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { Graficasv2Component } from './graficasv2/graficasv2.component';
+import { Graficasv3Component } from './graficasv3/graficasv3.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { Graficasv2Component } from './graficasv2/graficasv2.component';
     RegistroComponent,
     DashboardComponent,
     Graficasv2Component,
+    Graficasv3Component,
   ],
   bootstrap: [AppComponent],
 })
