@@ -239,7 +239,8 @@ export class DashboardComponent implements OnInit {
         anio: eve.fechaPublicacion.getFullYear(),
         cantidad: cantidad,
       };
-      this.CantEventosxMes.push(evexmes) ;
+      this.CantEventosxMes.push(evexmes);
+      this.CantEventosxMes.sort();
     });
   }
 

@@ -7,11 +7,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import {
-  Evento,
-  EventosxCategoria,
-  CantCategoriaEventos,
-} from '../interfaces/eventos';
+import { CantEventosxMes } from '../interfaces/eventos';
 
 import {
   ChartComponent,
@@ -27,36 +23,35 @@ export type ChartOptions = {
   xaxis: ApexXAxis;
   title: ApexTitleSubtitle;
 };
-
 @Component({
-  selector: 'app-graficasv2',
-  templateUrl: './graficasv2.component.html',
-  styleUrls: ['./graficasv2.component.css'],
+  selector: 'app-graficasv3',
+  templateUrl: './graficasv3.component.html',
+  styleUrls: ['./graficasv3.component.css'],
 })
-export class Graficasv2Component implements OnInit {
-  @Input() CantCategoriaEventos!: CantCategoriaEventos[];
+export class Graficasv3Component implements OnInit {
+  @Input() CantEventosxMes!: CantEventosxMes[];
 
   @ViewChild('chart') chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions> | any;
 
   //para graficas:
-  categorias: string[] = [];
+  mesyanio: string[] = [];
   cantidadeventos: number[] = [];
 
   constructor() {}
 
   ngOnInit() {
-    this.generoGraficaCantidadEventosxCategorias(this.CantCategoriaEventos);
+    this.generoGraficaCantidadEventosxMes(this.CantEventosxMes);
   }
 
   ngOnChanges() {
-    this.generoGraficaCantidadEventosxCategorias(this.CantCategoriaEventos);
+    this.generoGraficaCantidadEventosxMes(this.CantEventosxMes);
   }
 
-  generoGraficaCantidadEventosxCategorias(
-    cantidadeventos: CantCategoriaEventos[]
-  ) {
-    this.categorias = cantidadeventos.map((p) => p.nombre);
+  generoGraficaCantidadEventosxMes(cantidadeventos: CantEventosxMes[]) {
+    this.mesyanio = cantidadeventos.map(
+      (p) => p.mes.toString() + '-' + p.anio.toString()
+    );
     this.cantidadeventos = cantidadeventos.map((p) => p.cantidad);
     /*
     this.categorias = cantidadeventos.map(function (obj) {
@@ -75,15 +70,8 @@ export class Graficasv2Component implements OnInit {
       //  return (obj.precio_mayor + obj!.precio_menor) / 2;
     });
 
-    //borro el primero que es el choose
-    this.categorias.splice(0, 1);
-    this.cantidadeventos.splice(0, 1);
-
     console.log(
-      'catgegorianombres: ' +
-        this.categorias +
-        ' eventos cant: ' +
-        this.cantidadeventos
+      'mesanio: ' + this.mesyanio + ' eventos cant: ' + this.cantidadeventos
     );
 
     //grafica
@@ -100,11 +88,11 @@ export class Graficasv2Component implements OnInit {
         type: 'bar',
       },
       title: {
-        text: 'Gráfica de eventos por categoría:',
+        text: 'Gráfica de eventos por mes y año:',
       },
       xaxis: {
         //categories: ['pepe', 'luis'],
-        categories: this.categorias,
+        categories: this.mesyanio,
       },
     };
   }
