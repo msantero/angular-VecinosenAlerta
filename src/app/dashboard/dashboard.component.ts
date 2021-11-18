@@ -198,6 +198,7 @@ export class DashboardComponent implements OnInit {
 
   obtener_cant_eventos_categoria(eventos: Evento[], categorias: Categoria[]) {
     console.log('Obtengo cantidad de eventos por categoria...');
+    this.CantCategoriaEventos = [];
 
     categorias.forEach((cat) => {
       let frs = eventos.filter((element) => element.categoria._id === cat._id);
