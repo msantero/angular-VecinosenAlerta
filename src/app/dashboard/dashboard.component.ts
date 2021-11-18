@@ -73,6 +73,7 @@ export class DashboardComponent implements OnInit {
         } else {
           this.categorias = this.CategoriaService.categorias;
         }
+        this.obtener_eventos();
       },
 
       ({ error: { mensaje } }) => {
@@ -120,6 +121,7 @@ export class DashboardComponent implements OnInit {
           this.msg = 'Categoria -  Ingresada ';
           //this.categorias = null;
           this.obtener_categorias(false);
+          this.obtener_eventos();
         },
         ({ error: { mensaje } }) => {
           this.msg = mensaje;
@@ -159,6 +161,7 @@ export class DashboardComponent implements OnInit {
 
         this.EliminarCategoriaGroup.reset();
         this.obtener_categorias(false);
+        this.obtener_eventos();
         this.msg = '';
       },
 
@@ -183,7 +186,7 @@ export class DashboardComponent implements OnInit {
 
         this.eventos = this.EventoService.eventos;
         this.obtener_cant_eventos_categoria(this.eventos, this.categorias);
-        this.ver_eventos(this.eventos);
+        //this.ver_eventos(this.eventos);
       },
 
       ({ error: { mensaje } }) => {
@@ -197,9 +200,7 @@ export class DashboardComponent implements OnInit {
     console.log('Obtengo cantidad de eventos por categoria...');
 
     categorias.forEach((cat) => {
-      let frs = eventos.filter(
-        (element) => element._id === cat._id && cat._id != '0'
-      );
+      let frs = eventos.filter((element) => element.categoria._id === cat._id);
       var cantidad = 0;
 
       frs.forEach((element) => {

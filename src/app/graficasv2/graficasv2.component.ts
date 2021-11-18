@@ -56,14 +56,22 @@ export class Graficasv2Component implements OnInit {
   generoGraficaCantidadEventosxCategorias(
     cantidadeventos: CantCategoriaEventos[]
   ) {
+    cantidadeventos.forEach((element) => {
+      console.log('NOMBRE' + element.nombre);
+    });
+
+    this.categorias = cantidadeventos.map((p) => p.nombre);
+    this.cantidadeventos = cantidadeventos.map((p) => p.cantidad);
+    /*
     this.categorias = cantidadeventos.map(function (obj) {
       if (obj.nombre === 'Choose one') {
         return '';
       } else {
         return obj.nombre;
       }
+      
     });
-
+*/
     this.cantidadeventos = cantidadeventos.map(function (obj) {
       return obj.cantidad;
       //aca poner los filtros, como eventos activos,
