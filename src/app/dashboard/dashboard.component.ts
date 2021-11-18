@@ -7,6 +7,7 @@ import {
   Evento,
   EventosxCategoria,
   CantCategoriaEventos,
+  CantEventosxMes,
 } from '../interfaces/eventos';
 
 import { EventoService } from '../services/evento.service';
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit {
 
   EventosxCategoria: EventosxCategoria[] = [];
   CantCategoriaEventos: CantCategoriaEventos[] = [];
+  CantEventosxMes: CantEventosxMes[] = [];
 
   ngOnInit() {
     this.nombre_administrador = this.AdminService.getUserNombre();
@@ -215,6 +217,29 @@ export class DashboardComponent implements OnInit {
       };
 
       cat._id != '0' ? this.CantCategoriaEventos.push(cantcateve) : '';
+    });
+  }
+
+  obtener_categorias_por_mes() {
+    var cantidad = 0;
+    this.eventos.forEach((eve) => {
+      this.eventos.forEach((eveaux) => {
+        if (
+          eveaux.fechaPublicacion.getDate() == eve.fechaPublicacion.getDate() &&
+          eveaux.fechaPublicacion.getMonth() ==
+            eve.fechaPublicacion.getDate() &&
+          eveaux.fechaPublicacion.getFullYear() ==
+            eve.fechaPublicacion.getFullYear()
+        ) {
+          cantidad++;
+        }
+      });
+      let evexmes = {
+        mes: eve.fechaPublicacion.getMonth(),
+        anio: eve.fechaPublicacion.getFullYear(),
+        cantidad: cantidad,
+      };
+      this.CantEventosxMes.push(evexmes) ;
     });
   }
 

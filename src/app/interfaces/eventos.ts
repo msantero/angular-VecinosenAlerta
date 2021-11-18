@@ -26,3 +26,9 @@ export interface CantCategoriaEventos {
   nombre: string;
   cantidad: number;
 }
+
+export interface CantEventosxMes {
+  mes: number;
+  anio: number;
+  cantidad: number;
+}
