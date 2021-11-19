@@ -178,6 +178,20 @@ export class DashboardComponent implements OnInit {
     this.obtener_categorias(false);
   }
 
+  desactivarEvento(idEvento: String) {
+    console.log('id evento a desactivar ' + idEvento);
+    this.EventoService.desactivarEvento(idEvento).subscribe(
+      () => {
+        this.obtener_eventos();
+        this.msg = '';
+      },
+      ({ error: { mensaje } }) => {
+        this.msg = mensaje;
+        console.log('Mensaje de error al desactivar alerta: ' + this.msg);
+      }
+    );
+  }
+
   obtener_eventos() {
     console.log('Obtengo eventos...');
     this.EventoService.geteventos().subscribe(
@@ -229,6 +243,14 @@ export class DashboardComponent implements OnInit {
     }; */
     //this.CantEventosxMes.push(evexmes);
     // this.CantEventosxMes.sort();
+  }
+
+  checkButtonDesactivar(evento: Evento) {
+    if (evento.estaActivo) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   ver_eventos(eventos: Evento[]) {

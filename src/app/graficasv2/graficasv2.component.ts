@@ -100,7 +100,7 @@ export class Graficasv2Component implements OnInit {
         type: 'bar',
       },
       title: {
-        text: 'Gráfica de eventos por categoría:',
+        text: 'Gráfica de alertas por categoría:',
       },
       xaxis: {
         //categories: ['pepe', 'luis'],

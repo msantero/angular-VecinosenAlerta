@@ -68,25 +68,34 @@
     <tr>
       <td>
         <tr>
-          <td id="titulo2" colspan="5">Lista de eventos</td>
+          <td id="titulo2" colspan="5">Lista de alertas</td>
         </tr>
         <tr>
           <th scope="col" id="titulo1">Usuario creador</th>
           <th scope="col" id="titulo1">Titulo</th>
-          <th scope="col" id="titulo1">Activo</th>
           <th scope="col" id="titulo1">Categoria</th>
           <th scope="col" id="titulo1">Fecha de publicación</th>
+          <th scope="col" id="titulo1">Estado</th>
+          <th scope="col" id="titulo1">Acción</th>
         </tr>
         <tbody>
           <tr *ngFor="let evento of eventos">
             <td>{{ evento.usuario.user }}</td>
             <td>{{ evento.titulo }}</td>
-            <td ng-if="evento.estaActivo">
-              {{ evento.estaActivo }}
-            </td>
-
             <td>{{ evento.categoria.nombre }}</td>
             <td>{{ evento.fechaPublicacion | date: 'dd/MM/yyyy hh:mm' }}</td>
+            <td>
+              <p *ngIf="!evento.estaActivo">inactivo</p>
+              <p *ngIf="evento.estaActivo">activo</p>
+            </td>
+            <td>
+              <button
+                *ngIf="checkButtonDesactivar(evento)"
+                (click)="desactivarEvento(evento._id)"
+              >
+                Desactivar
+              </button>
+            </td>
           </tr>
         </tbody>
         <br />

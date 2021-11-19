@@ -88,7 +88,7 @@ export class Graficasv3Component implements OnInit {
         type: 'bar',
       },
       title: {
-        text: 'Gráfica de eventos por mes y año:',
+        text: 'Gráfica de alertas por mes y año:',
       },
       xaxis: {
         //categories: ['pepe', 'luis'],

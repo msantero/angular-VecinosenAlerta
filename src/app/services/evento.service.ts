@@ -31,6 +31,19 @@ export class EventoService {
     );
   }
 
+  desactivarEvento(id: String) {
+    const headers = {
+      'Content-type': 'application/json',
+    };
+    
+    return this.http.put(
+      'https://vecinosenalerta.herokuapp.com/desactivarevento/' + '?id=' + id,
+      {
+        headers,
+      }
+    );
+  }
+
   setEventos(eve: any) {
     this.eventos = <Evento[]>eve;
   }
