@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AdminService } from '../services/administrador.service';
 import { Observable } from 'rxjs';
 
-import { Categoria } from '../interfaces/categorias';
+import { Categoria, CategoriaRequest } from '../interfaces/categorias';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +31,7 @@ export class CategoriaService {
     );
   }
 
-  altacategoria(categoria: Categoria): Observable<Categoria> {
+  altacategoria(categoria: CategoriaRequest): Observable<CategoriaRequest> {
     const headers = {
       'Content-type': 'application/json',
     };
@@ -50,12 +50,14 @@ export class CategoriaService {
       'Content-type': 'application/json',
     };
 
-    return this.http
-      .delete('https://vecinosenalerta.herokuapp.com/categoria/' + id, {
+    return this.http.delete(
+      'https://vecinosenalerta.herokuapp.com/categoria/' + id,
+      {
         headers,
-      });
+      }
+    );
   }
-  
+
   /*
   borrarcategoria(id: String) {
     const headers = {

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Categoria } from '../interfaces/categorias';
+import { Categoria, CategoriaRequest } from '../interfaces/categorias';
 import {
   Evento,
   EventosxCategoria,
@@ -13,6 +13,7 @@ import {
 import { EventoService } from '../services/evento.service';
 import { CategoriaService } from '../services/categoria.service';
 import { AdminService } from '../services/administrador.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +26,7 @@ export class DashboardComponent implements OnInit {
   evento: Evento | undefined;
   eventos: Evento[] = [];
 
-  categoriaalta: Categoria | undefined;
+  categoriaalta: CategoriaRequest | undefined;
   categoria: Categoria = { _id: '0' } as Categoria;
   categorias: Categoria[] = [{ _id: '0', nombre: 'Choose one' } as Categoria];
 
@@ -102,7 +103,7 @@ export class DashboardComponent implements OnInit {
       //let venta =  Venta;
 
       this.categoriaalta = {
-        _id: '0',
+        //_id: '0',
         nombre: AltaCat.nombre,
         minutosExpiracion: AltaCat.minutosExpiracion,
       };
@@ -125,10 +126,20 @@ export class DashboardComponent implements OnInit {
           this.obtener_categorias(false);
           this.obtener_eventos();
         },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Client-side error: ' + err.message);
+          } else {
+            console.log('Server-side error: ' + err.message);
+          }
+          this.msg = 'Error al dar de alta la categoría.';
+        }
+        /*
         ({ error: { mensaje } }) => {
           this.msg = mensaje;
           console.log('Mensaje de error:' + this.msg);
         }
+        */
       );
 
       //this.obtener_categorias();

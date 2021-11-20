@@ -3,3 +3,8 @@ export interface Categoria {
   nombre: string;
   minutosExpiracion: number;
 }
+
+export interface CategoriaRequest {
+  nombre: string;
+  minutosExpiracion: number;
+}
