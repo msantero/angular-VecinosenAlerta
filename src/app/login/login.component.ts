@@ -48,7 +48,12 @@ export class LoginComponent implements OnInit {
           });
         },
         ({ error: { mensaje } }) => {
-          this.msg = mensaje;
+          if (mensaje == null) {
+            this.msg =
+              'Error al crear registro. El administrador con ese nombre ya existe.';
+          } else {
+            this.msg = mensaje;
+          }
           console.log('Mensaje de error:' + this.msg);
         }
       );

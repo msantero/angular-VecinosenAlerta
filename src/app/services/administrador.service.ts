@@ -27,9 +27,9 @@ export class AdminService {
     );
   }
 
-  registro(usuario: string, password: string): Observable<Administrador> {
-    const headers = { 'Content-type': 'application/json; charset=utf-8' };
-    const body = JSON.stringify({ usuario, password });
+  registro(user: string, password: string): Observable<Administrador> {
+    const headers = { 'Content-type': 'application/json' };
+    const body = JSON.stringify({ user, password });
     return this.http.post<Administrador>(
       'https://vecinosenalerta.herokuapp.com/admin',
       body,

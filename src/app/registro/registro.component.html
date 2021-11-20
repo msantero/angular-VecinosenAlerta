@@ -1,3 +1,50 @@
-<p>
-registro works!
-</p>
+<body>
+<div id="contenedor">
+  <div id="central">
+    <div id="registro">
+      <div class="titulo">Registro Vendedor</div>
+      <form [formGroup]="registroGroup" (ngSubmit)="registro()">
+        <input
+          type="text"
+          name="usuario"
+          id="usuario"
+          placeholder="Usuario"
+          required
+          formControlName="usuario"
+        />
+        <!--  formControlName="usuario" -->
+
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          name="password"
+          required
+          formControlName="password"
+        />
+
+        <input
+          type="password"
+          placeholder="Password confirm"
+          id="passwordreplay"
+          name="password"
+          required
+          formControlName="passwordreplay"
+        />
+
+        <button type="submit" title="Ingresar" name="Ingresar">
+          Registrarse
+        </button>
+      </form>
+
+      <div class="pie-form">
+        <a [routerLink]="['']"> Login </a>
+      </div>
+
+      <div class="inferior" *ngIf="msg">
+        <label> {{ msg }}</label>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
