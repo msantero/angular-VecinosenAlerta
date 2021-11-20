@@ -1,4 +1,177 @@
 <body>
+  <div id="contenedorIndex">
+    <header>
+      <button id="botonEnviar" (click)="logOut()">Cerrar sesión</button>
+    </header>
+    <div id="principalIndexdiv">
+      <p id="principalIndex">
+        Bienvenido/a {{ nombre_administrador }} al administrador de
+      </p>
+      <br />
+      <h2 id="logo">Vecinos en Alerta</h2>
+    </div>
+    <section id="section1Index">
+      <h1 class="encabezado">Analytics</h1>
+      <h2 class="desc">Gráficas para monitoreo y análisis de información</h2>
+      <br />
+      <article>
+        <app-graficasv2 [CantCategoriaEventos]="CantCategoriaEventos">
+        </app-graficasv2>
+      </article>
+      <article>
+        <app-graficasv3 [CantEventosxMes]="CantEventosxMes"> </app-graficasv3>
+      </article>
+    </section>
+    <section id="section2Index">
+      <h1 class="encabezado">Categorías</h1>
+      <h2 class="desc">Agregue y elimine categorías de la forma más simple</h2>
+      <br />
+      <br />
+      <article>
+        <h3>Agregar categoría</h3>
+        <div id="contenedorcategoria">
+          <form
+            id="formcategoria"
+            [formGroup]="AltaCategoriaGroup"
+            (ngSubmit)="altacategoria()"
+          >
+            <input
+              type="text"
+              name="nombre"
+              id="nombre"
+              placeholder="Nombre"
+              required
+              formControlName="nombre"
+            />
+            <input
+              class="inputnumber"
+              type="number"
+              id="minutosExpiracion"
+              name="minutosExpiracion"
+              placeholder="Minutos de expiración"
+              min="1"
+              max="10000"
+              formControlName="minutosExpiracion"
+            />
+            <br />
+            <label>(expiración en minutos) </label>
+            <br />
+            <br />
+            <button
+              id="botonEnviar"
+              type="submit"
+              title="Agregar"
+              name="Agregar"
+            >
+              Agregar
+            </button>
+
+            <div id="titulo4" *ngIf="msg">
+              <label> {{ msg }}</label>
+            </div>
+          </form>
+        </div>
+      </article>
+      <article>
+        <h3>Eliminar categoría</h3>
+        <div id="contenedorcategoria">
+          <br />
+          <form
+            id="formcategoria"
+            [formGroup]="EliminarCategoriaGroup"
+            (ngSubmit)="eliminar()"
+          >
+            <select
+              name="categorias"
+              [(ngModel)]="categoria._id"
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <option
+                [ngValue]="item._id"
+                *ngFor="let item of categorias"
+                [disabled]="item._id == '0'"
+              >
+                {{ item.nombre }}
+              </option>
+            </select>
+            <br />
+            <br />
+            <br />
+            <br />
+            <button
+              id="botonEnviar"
+              type="submit"
+              title="Eliminar"
+              name="Eliminar"
+            >
+              Eliminar
+            </button>
+          </form>
+        </div>
+      </article>
+    </section>
+    <section id="section4Index">
+      <h1 class="encabezado">Alertas</h1>
+      <h2 class="desc">Detalle de todo el historial de alertas</h2>
+      <br />
+      <br />
+      <p>
+        <select
+          id="filtrarEstado"
+          name="miselect"
+          [(ngModel)]="seleccionado"
+          (ngModelChange)="desactivaractivarcombo_eventos($event)"
+        >
+          <option [value]="item" *ngFor="let item of activodesactivo">
+            {{ item }}
+          </option>
+        </select>
+      </p>
+      <br />
+      <br />
+      <article id="singleArtible">
+        <table id="tablaListado">
+          <tr class="destacado">
+            <th scope="col" id="titulo1">Usuario creador</th>
+            <th scope="col" id="titulo1">Titulo</th>
+            <th scope="col" id="titulo1">Categoria</th>
+            <th scope="col" id="titulo1">Fecha de publicación</th>
+            <th scope="col" id="titulo1">Estado</th>
+            <th scope="col" id="titulo1">Acción</th>
+          </tr>
+
+          <tr *ngFor="let evento of eventosaux">
+            <td>{{ evento.usuario.user }}</td>
+            <td>{{ evento.titulo }}</td>
+            <td>{{ evento.categoria.nombre }}</td>
+            <td>{{ evento.fechaPublicacion | date: 'dd/MM/yyyy hh:mm' }}</td>
+            <td>
+              <p *ngIf="!evento.estaActivo">inactivo</p>
+              <p *ngIf="evento.estaActivo">activo</p>
+            </td>
+            <td>
+              <button
+                id="botonDesactivar"
+                *ngIf="checkButtonDesactivar(evento)"
+                (click)="desactivarEvento(evento._id)"
+              >
+                Desactivar
+              </button>
+            </td>
+          </tr>
+        </table>
+      </article>
+    </section>
+    <footer>
+      <br />
+      <br />
+      <p>Descargue la app desde Google Play: Vecinos en Alerta</p>
+    </footer>
+  </div>
+</body>
+
+<!--
+<body>
   <br />
   <br />
 
@@ -19,8 +192,6 @@
             required
             formControlName="nombre"
           />
-          <!-- dos input de cantidad de adultos y niños -->
-
           <label>Minutos de expiración: </label>
           <input
             class="inputnumber"
@@ -63,8 +234,6 @@
         </form>
       </td>
     </tr>
-
-    <!--Grid column-->¨
     <tr>
       <td>
         <p>
@@ -127,3 +296,4 @@
     </tr>
   </table>
 </body>
+ -->

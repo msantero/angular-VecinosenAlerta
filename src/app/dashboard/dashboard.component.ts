@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
   CantCategoriaEventos: CantCategoriaEventos[] = [];
   CantEventosxMes: CantEventosxMes[] = [];
 
-  activodesactivo: string[] = ['Todos', 'Activos', 'Inactivos'];
+  activodesactivo: string[] = ['Todas', 'Activas', 'Inactivas'];
   eventosaux: Evento[] = [];
   seleccionado: string;
 
@@ -288,13 +288,13 @@ export class DashboardComponent implements OnInit {
   desactivaractivarcombo_eventos(seleccionado) {
     console.log('Obtengo  combo seleccionado...' + seleccionado);
     this.eventosaux = [] = [];
-    if (seleccionado == 'Activos') {
+    if (seleccionado == 'Activas') {
       this.eventos.forEach((evento) => {
         if (evento.estaActivo == true) {
           this.eventosaux.push(evento);
         }
       });
-    } else if (seleccionado == 'Inactivos') {
+    } else if (seleccionado == 'Inactivas') {
       this.eventos.forEach((evento) => {
         if (evento.estaActivo == false) {
           this.eventosaux.push(evento);
@@ -304,5 +304,10 @@ export class DashboardComponent implements OnInit {
       this.obtener_eventos();
       this.eventosaux = this.eventos;
     }
+  }
+
+  logOut() {
+    console.log('estoy en el logout');
+    this.AdminService.logOut();
   }
 }
