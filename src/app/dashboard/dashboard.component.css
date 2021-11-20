@@ -4,7 +4,6 @@
   font-family: 'Montserrat', sans-serif;
   outline: none;
 }
-/*----------------------------------INDEX-------------------------------------*/
 #contenedorIndex {
   width: 1280px;
   margin: 0 auto;
@@ -66,7 +65,7 @@
   background: rgba(187, 7, 7, 0.1);
 }
 
-/*--------------------------------INDEX-CLIENTES------------------------------*/
+/*--------------------------------Analytics------------------------------*/
 
 #section1Index {
   text-align: center;
@@ -105,19 +104,13 @@
   text-align: center;
 }
 
-#section1Index article img {
-  width: 100px;
-  border-radius: 50%;
-  margin-top: 40px;
-}
-
 #section1Index article p {
   text-align: justify;
   margin: 20px 30px 20px 30px;
   font-size: 10px;
 }
 
-/*-------------------------------INDEX-SERVICIOS------------------------------*/
+/*-------------------------------Categorias------------------------------*/
 
 #section2Index {
   text-align: center;
@@ -133,96 +126,17 @@
   text-align: center;
 }
 
-#section2Index article img {
-  width: 100px;
-  border-radius: 50%;
-  margin-top: 40px;
-}
-
 #section2Index article p {
   text-align: justify;
   margin: 20px 30px 20px 30px;
   font-size: 10px;
 }
 
-/*----------------------------INDEX-PROYECTOS---------------------------------*/
-
-#section3Index {
-  text-align: center;
-  background-color: whitesmoke;
-}
-
-#section3Index article {
-  width: 300px;
-  margin: 0 0 40px 0;
-  text-align: center;
-  display: inline-block;
-}
-
-#section3Index article img {
-  width: 240px;
-  height: 140px;
-  margin-top: 40px;
-}
-
-#section3Index article img:hover {
-  box-shadow: 0 0 50px 0 lightslategrey;
-}
-
-#section3Index article p {
-  text-align: center;
-  font-size: 10px;
-  padding: 5px;
-}
-
-.opcion {
-  padding: 0 8px 0 6px;
-  font-size: 12px;
-  text-decoration: none;
-  color: darkblue;
-  border-right: 1px solid darkblue;
-}
-
-.proyecto {
-  color: darkred;
-  text-decoration: none;
-  border: none;
-  font-size: 18px;
-}
-
-#section3Index a:nth-child(6) {
-  border-right: none;
-}
-
-/*------------------------------INDEX-CONTACTO--------------------------------*/
+/*------------------------------Alertas--------------------------------*/
 
 #section4Index {
   text-align: center;
   background-color: #c4cfda;
-}
-
-#formularioContacto {
-  padding: 20px 30px;
-  text-align: center;
-  border: none;
-}
-
-#nombreContacto,
-#telefonoContacto {
-  width: 330px;
-  height: 40px;
-  margin: 10px 5px 10px 2px;
-  border: 1px solid #fff;
-  background-color: #f2f0e9;
-  border-radius: 0;
-}
-
-#mensajeContacto {
-  width: 673px;
-  margin: 10px 5px 10px 2px;
-  background-color: #f2f0e9;
-  resize: none;
-  border: 1px solid #fff;
 }
 
 fieldset {
@@ -257,46 +171,7 @@ fieldset {
   color: #666666;
 }
 
-nav#redes {
-  overflow: auto;
-}
-
-nav#redes ul {
-  list-style-type: none;
-}
-nav#redes ul li {
-  float: right;
-}
-nav#redes ul li a {
-  background-image: url(imagenes/sprites-social.png);
-  display: block;
-  width: 40px;
-  height: 40px;
-  margin: 5px;
-  border-radius: 30px;
-}
-nav#redes ul li a:hover {
-  background-position-y: bottom;
-}
-
-nav#redes ul li a {
-  background-image: url(img/sprites-social.png);
-  display: block;
-  width: 43px;
-  height: 43px;
-}
-
-nav#redes ul li a#facebook {
-  background-position-x: -48px;
-}
-
-nav#redes ul li a#twitter {
-  background-position-x: 0;
-}
-
-nav#redes ul li a#linkedin {
-  background-position-x: -144px;
-}
+/*-------------------------------------------------------------*/
 
 .contenedorGeneral {
   width: 1300px;
@@ -318,12 +193,6 @@ nav#redes ul li a#linkedin {
   color: #292929;
 }
 
-.adminImg {
-  width: 70px;
-  float: right;
-  margin: 30px 100px 0 0;
-}
-
 .seccionPrincipal p {
   float: left;
   margin-top: 7px;
@@ -331,23 +200,6 @@ nav#redes ul li a#linkedin {
   color: #999;
 }
 
-.seccionPrincipal img {
-  height: 27px;
-  float: right;
-}
-
-.seccionPrincipal nav p {
-  width: 100%;
-  float: left;
-  margin-bottom: 15px;
-  font-size: 13px;
-  color: #292929;
-}
-
-.seccionPrincipal nav p a {
-  text-decoration: none;
-  color: #999;
-}
 #tablaListado {
   width: 100%;
   border-collapse: collapse;
@@ -396,27 +248,6 @@ td {
   width: 200px;
   float: left;
 }
-.programador,
-.disenador,
-.ingeniero {
-  color: #fff;
-  padding: 10px 10px;
-  margin-right: 5px;
-  border-radius: 10px;
-  font-size: 15px;
-  display: inline;
-  float: left;
-}
-.programador {
-  background-color: darkblue;
-}
-.disenador {
-  background-color: mediumorchid;
-}
-
-.ingeniero {
-  background-color: chocolate;
-}
 
 #contenedorGeneral footer {
   float: right;
@@ -427,19 +258,6 @@ td {
 #contenedorGeneral footer a {
   text-decoration: none;
   color: #666666;
-}
-
-#inputBuscarE {
-  font-size: 13px;
-  text-align: center;
-  background-image: url(img/iconoBuscar.png);
-  background-size: 17px;
-  background-repeat: no-repeat;
-}
-
-#inputBuscarE:focus {
-  outline: none;
-  border: 1px solid #666666;
 }
 
 #bodycategoria {
@@ -496,7 +314,7 @@ td {
   background-color: #f2f0e9;
 }
 
-#filtrarEstado{
+#filtrarEstado {
   width: 20%;
   height: 40px;
   padding: 5px 0 5px 10px;
