@@ -67,6 +67,22 @@
     <!--Grid column-->¨
     <tr>
       <td>
+        <p>
+          <label> Eventos: </label>
+          <select
+            name="miselect"
+            [(ngModel)]="seleccionado"
+            (ngModelChange)="desactivaractivarcombo_eventos($event)"
+          >
+            <option [value]="item" *ngFor="let item of activodesactivo">
+              {{ item }}
+            </option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <tr>
           <td id="titulo2" colspan="6">Lista de alertas</td>
         </tr>

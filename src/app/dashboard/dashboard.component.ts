@@ -34,6 +34,10 @@ export class DashboardComponent implements OnInit {
   CantCategoriaEventos: CantCategoriaEventos[] = [];
   CantEventosxMes: CantEventosxMes[] = [];
 
+  activodesactivo: string[] = ['Todos', 'Activos', 'Inactivos'];
+  eventosaux: Evento[] = [];
+  seleccionado: string;
+
   ngOnInit() {
     this.nombre_administrador = this.AdminService.getUserNombre();
     this.obtener_categorias(true);
@@ -279,5 +283,27 @@ export class DashboardComponent implements OnInit {
           evento.usuario._id
       );
     });
+  }
+
+  desactivaractivarcombo_eventos(seleccionado) {
+    console.log('Obtengo  combo seleccionado...' + seleccionado);
+
+    if (seleccionado == 'Activos') {
+      this.eventos.forEach((evento) => {
+        if (evento.estaActivo == true) {
+          this.eventosaux.push(evento);
+        }
+      });
+      this.eventos = [] = [];
+      this.eventos = this.eventosaux;
+    } else if (seleccionado == 'Inactivos') {
+      this.eventos.forEach((evento) => {
+        if (evento.estaActivo == false) {
+          this.eventosaux.push(evento);
+        }
+      });
+      this.eventos = [] = [];
+      this.eventos = this.eventosaux;
+    }
   }
 }
