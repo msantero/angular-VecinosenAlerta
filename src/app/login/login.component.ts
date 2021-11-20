@@ -4,6 +4,7 @@ import { Administrador } from '../interfaces/administradores';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../services/administrador.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -47,14 +48,14 @@ export class LoginComponent implements OnInit {
             queryParams: { UserId: this.adminService.getUserId() },
           });
         },
-        ({ error: { mensaje } }) => {
-          if (mensaje == null) {
-            this.msg =
-              'Error al crear registro. El administrador con ese nombre ya existe.';
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Client-side error: ' + err.message);
           } else {
-            this.msg = mensaje;
+            console.log('Server-side error: ' + err.message);
           }
-          console.log('Mensaje de error:' + this.msg);
+          this.msg =
+            'Error en login. El administrador con ese nombre o password no existen.';
         }
       );
     }
