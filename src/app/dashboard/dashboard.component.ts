@@ -287,23 +287,22 @@ export class DashboardComponent implements OnInit {
 
   desactivaractivarcombo_eventos(seleccionado) {
     console.log('Obtengo  combo seleccionado...' + seleccionado);
-
+    this.eventosaux = [] = [];
     if (seleccionado == 'Activos') {
       this.eventos.forEach((evento) => {
         if (evento.estaActivo == true) {
           this.eventosaux.push(evento);
         }
       });
-      this.eventos = [] = [];
-      this.eventos = this.eventosaux;
     } else if (seleccionado == 'Inactivos') {
       this.eventos.forEach((evento) => {
         if (evento.estaActivo == false) {
           this.eventosaux.push(evento);
         }
       });
-      this.eventos = [] = [];
-      this.eventos = this.eventosaux;
+    } else {
+      this.obtener_eventos();
+      this.eventosaux = this.eventos;
     }
   }
 }
