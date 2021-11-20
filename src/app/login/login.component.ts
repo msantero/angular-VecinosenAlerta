@@ -67,6 +67,10 @@ export class LoginComponent implements OnInit {
     window.alert('We notify you');
   }
 
+  toRegistro() {
+    this.router.navigate(['/registro']);
+  }
+
   //si existe el usuario:
   //<app-usuario-alerts [usuario]="usuario" (notify)="onNotify()">
   //</app-usuario-alerts>

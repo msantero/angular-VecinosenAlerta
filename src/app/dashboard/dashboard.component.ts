@@ -307,7 +307,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logOut() {
-    console.log('estoy en el logout');
     this.AdminService.logOut();
+    this.router.navigate(['/login']);
   }
 }

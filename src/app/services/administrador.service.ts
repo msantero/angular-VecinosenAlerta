@@ -57,6 +57,5 @@ export class AdminService {
 
   logOut() {
     this.admin = undefined;
-    this.router.navigate(['/login']);
   }
 }
