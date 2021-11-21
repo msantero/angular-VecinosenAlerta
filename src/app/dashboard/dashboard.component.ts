@@ -34,12 +34,7 @@ export class DashboardComponent implements OnInit {
   CantCategoriaEventos: CantCategoriaEventos[] = [];
   CantEventosxMes: CantEventosxMes[] = [];
 
-  activodesactivo: string[] = [
-    'Seleccione estado:',
-    'Todas',
-    'Activas',
-    'Inactivas',
-  ];
+  activodesactivo: string[] = ['Todas', 'Activas', 'Inactivas'];
   eventosaux: Evento[] = [];
   seleccionado: string;
 
