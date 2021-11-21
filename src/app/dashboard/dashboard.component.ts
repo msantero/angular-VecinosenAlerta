@@ -34,7 +34,12 @@ export class DashboardComponent implements OnInit {
   CantCategoriaEventos: CantCategoriaEventos[] = [];
   CantEventosxMes: CantEventosxMes[] = [];
 
-  activodesactivo: string[] = ['Todas', 'Activas', 'Inactivas'];
+  activodesactivo: string[] = [
+    'Seleccione estado:',
+    'Todas',
+    'Activas',
+    'Inactivas',
+  ];
   eventosaux: Evento[] = [];
   seleccionado: string;
 
@@ -218,6 +223,7 @@ export class DashboardComponent implements OnInit {
         this.eventos = this.EventoService.eventos;
         this.obtener_cant_eventos_categoria(this.eventos, this.categorias);
         //this.ver_eventos(this.eventos);
+        this.desactivaractivarcombo_eventos('Todas');
       },
 
       ({ error: { mensaje } }) => {
