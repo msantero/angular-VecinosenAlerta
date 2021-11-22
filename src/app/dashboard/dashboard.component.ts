@@ -302,7 +302,7 @@ export class DashboardComponent implements OnInit {
         }
       });
     } else {
-      this.obtener_eventos();
+      //this.obtener_eventos();
       this.eventosaux = this.eventos;
     }
   }
