@@ -122,9 +122,6 @@
           [(ngModel)]="seleccionado"
           (ngModelChange)="desactivaractivarcombo_eventos($event)"
         >
-          <option value="" selected="true" disabled="true">
-            Seleccione estado:
-          </option>
           <option [value]="item" *ngFor="let item of activodesactivo">
             {{ item }}
           </option>
