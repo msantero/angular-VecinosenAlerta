@@ -307,6 +307,11 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  cargo_todos(seleccionado) {
+    this.obtener_eventos();
+    this.eventosaux = this.eventos;
+  }
+
   logOut() {
     this.AdminService.logOut();
     this.router.navigate(['/login']);
