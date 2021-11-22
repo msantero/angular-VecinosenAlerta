@@ -307,7 +307,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  cargo_todos(seleccionado) {
+  cargo_todos() {
     this.obtener_eventos();
     this.eventosaux = this.eventos;
   }
