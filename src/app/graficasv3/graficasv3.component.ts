@@ -71,10 +71,6 @@ export class Graficasv3Component implements OnInit {
       //  return (obj.precio_mayor + obj!.precio_menor) / 2;
     });
 
-    console.log(
-      'mesanio: ' + this.mesyanio + ' eventos cant: ' + this.cantidadeventos
-    );
-
     //grafica
     this.chartOptions = {
       series: [
