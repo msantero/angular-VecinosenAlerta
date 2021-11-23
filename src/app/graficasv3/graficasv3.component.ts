@@ -52,6 +52,7 @@ export class Graficasv3Component implements OnInit {
     this.mesyanio = cantidadeventos.map(
       (p) => p.mes.toString() + '-' + p.anio.toString()
     );
+
     this.cantidadeventos = cantidadeventos.map((p) => p.cantidad);
     /*
     this.categorias = cantidadeventos.map(function (obj) {

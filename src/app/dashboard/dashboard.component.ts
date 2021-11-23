@@ -37,11 +37,12 @@ export class DashboardComponent implements OnInit {
   activodesactivo: string[] = ['Todas', 'Activas', 'Inactivas'];
   eventosaux: Evento[] = [];
   seleccionado: string;
+  seleccionevento: string = 'Todas';
 
   ngOnInit() {
     this.nombre_administrador = this.AdminService.getUserNombre();
     this.obtener_categorias(true);
-    this.obtener_eventos();
+    this.obtener_eventos(this.seleccionevento);
   }
 
   AltaCategoriaGroup: FormGroup;
@@ -80,7 +81,7 @@ export class DashboardComponent implements OnInit {
         } else {
           this.categorias = this.CategoriaService.categorias;
         }
-        this.obtener_eventos();
+        this.obtener_eventos(this.seleccionevento);
       },
 
       ({ error: { mensaje } }) => {
@@ -128,7 +129,7 @@ export class DashboardComponent implements OnInit {
           this.msg = 'Categoria -  Ingresada ';
           //this.categorias = null;
           this.obtener_categorias(false);
-          this.obtener_eventos();
+          this.obtener_eventos(this.seleccionevento);
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
@@ -178,7 +179,7 @@ export class DashboardComponent implements OnInit {
 
         this.EliminarCategoriaGroup.reset();
         this.obtener_categorias(false);
-        this.obtener_eventos();
+        this.obtener_eventos(this.seleccionevento);
         this.msg = '';
       },
 
@@ -197,7 +198,7 @@ export class DashboardComponent implements OnInit {
     console.log('id evento a desactivar ' + idEvento);
     this.EventoService.desactivarEvento(idEvento).subscribe(
       () => {
-        this.obtener_eventos();
+        this.obtener_eventos(this.seleccionevento);
         this.msg = '';
       },
       ({ error: { mensaje } }) => {
@@ -207,7 +208,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  obtener_eventos() {
+  obtener_eventos(select: string) {
     console.log('Obtengo eventos...');
     this.EventoService.geteventos().subscribe(
       (eve) => {
@@ -218,7 +219,8 @@ export class DashboardComponent implements OnInit {
         this.eventos = this.EventoService.eventos;
         this.obtener_cant_eventos_categoria(this.eventos, this.categorias);
         //this.ver_eventos(this.eventos);
-        this.desactivaractivarcombo_eventos('Todas');
+        this.desactivaractivarcombo_eventos(select);
+        this.obtener_eventos_por_mes(this.eventos);
       },
 
       ({ error: { mensaje } }) => {
@@ -250,15 +252,26 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  obtener_categorias_por_mes() {
-    /*
-    let evexmes = {
-      mes: eve.fechaPublicacion.getMonth(),
-      anio: eve.fechaPublicacion.getFullYear(),
-      cantidad: cantidad,
-    }; */
-    //this.CantEventosxMes.push(evexmes);
-    // this.CantEventosxMes.sort();
+  obtener_eventos_por_mes(eventos: Evento[]) {
+    console.log('Obtengo eventos por mesanio...');
+    this.CantEventosxMes = [];
+    for (var i = 1; i <= 12; i++) {
+      let ma = {
+        mes: i,
+        anio: 2021,
+        cantidad: 0,
+      };
+      this.CantEventosxMes.push(ma);
+    }
+
+    this.CantEventosxMes.forEach((ma) => {
+      this.eventos.forEach((eve) => {
+        var dt = new Date(eve.fechaPublicacion);
+        if (ma.mes === dt.getMonth() + 1 && ma.anio === dt.getFullYear()) {
+          ma.cantidad = ma.cantidad + 1;
+        }
+      });
+    });
   }
 
   checkButtonDesactivar(evento: Evento) {
@@ -287,6 +300,7 @@ export class DashboardComponent implements OnInit {
   }
 
   desactivaractivarcombo_eventos(seleccionado) {
+    this.seleccionevento = seleccionado;
     console.log('Obtengo  combo seleccionado...' + seleccionado);
     this.eventosaux = [] = [];
     if (seleccionado == 'Activas') {
@@ -305,11 +319,6 @@ export class DashboardComponent implements OnInit {
       //this.obtener_eventos();
       this.eventosaux = this.eventos;
     }
-  }
-
-  cargo_todos() {
-    this.obtener_eventos();
-    this.eventosaux = this.eventos;
   }
 
   logOut() {
