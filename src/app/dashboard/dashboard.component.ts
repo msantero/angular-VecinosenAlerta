@@ -221,6 +221,7 @@ export class DashboardComponent implements OnInit {
         //this.ver_eventos(this.eventos);
         this.desactivaractivarcombo_eventos(select);
         this.obtener_eventos_por_mes(this.eventos);
+        this.ver_eventos(this.eventos);
       },
 
       ({ error: { mensaje } }) => {
@@ -235,7 +236,7 @@ export class DashboardComponent implements OnInit {
     this.CantCategoriaEventos = [];
 
     categorias.forEach((cat) => {
-      let frs = eventos.filter((element) => element.categoria._id === cat._id);
+      let frs = eventos.filter((element) => element.categoria?._id === cat._id);
       var cantidad = 0;
 
       frs.forEach((element) => {

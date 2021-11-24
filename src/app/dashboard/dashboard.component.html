@@ -143,7 +143,7 @@
           <tr *ngFor="let evento of eventosaux">
             <td>{{ evento.usuario.user }}</td>
             <td>{{ evento.titulo }}</td>
-            <td>{{ evento.categoria.nombre }}</td>
+            <td>{{ evento.categoria?.nombre }}</td>
             <td>{{ evento.fechaPublicacion | date: 'dd/MM/yyyy hh:mm' }}</td>
             <td>
               <p *ngIf="!evento.estaActivo">inactivo</p>
