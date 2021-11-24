@@ -221,7 +221,7 @@ export class DashboardComponent implements OnInit {
         //this.ver_eventos(this.eventos);
         this.desactivaractivarcombo_eventos(select);
         this.obtener_eventos_por_mes(this.eventos);
-        this.ver_eventos(this.eventos);
+        //this.ver_eventos(this.eventos);
       },
 
       ({ error: { mensaje } }) => {
@@ -293,7 +293,7 @@ export class DashboardComponent implements OnInit {
           ' titulo: ' +
           evento.titulo +
           ' idcategoria ' +
-          evento.categoria._id +
+          evento.categoria?._id +
           ' idusuario ' +
           evento.usuario._id
       );
