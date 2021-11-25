@@ -76,8 +76,8 @@ export class Graficasv2Component implements OnInit {
     });
 
     //borro el primero que es el choose
-    this.categorias.splice(0, 1);
-    this.cantidadeventos.splice(0, 1);
+    //this.categorias.splice(0, 1);
+    //this.cantidadeventos.splice(0, 1);
 
     console.log(
       'catgegorianombres: ' +
